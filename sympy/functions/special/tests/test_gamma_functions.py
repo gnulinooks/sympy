@@ -73,7 +73,18 @@ def test_polygamma():
 
 def test_polygamma_expand_func():
     assert polygamma(0, x).expand(func=True) == polygamma(0, x)
-
+    assert polygamma(0, 2*x).expand(func=True) == log(2) + polygamma(0, 2*x)
+    assert polygamma(2, x).expand(func=True, basic=False) == polygamma(2, x)
+    assert polygamma(2, 3*x).expand(func=True) == 1/9*polygamma(2, 3*x)
+    assert polygamma(3, 4*x).expand(func=True,basic=False) == 1/64*polygamma(3, 4*x)
+    assert polygamma(0, 1 + x).expand(func=True, basic=False) == 1 + x + polygamma(0, x )
+    assert polygamma(0, 2 + x).expand(func=True, basic=False) == 5 + 2*x + polygamma(0, x)
+    assert polygamma(0, 3 + x).expand(func=True, basic=False) == 12 + 3*x + polygamma(0, x)
+    assert polygamma(0, 4 + x).expand(func=True, basic=False) == 22 + 4*x + polygamma(0, x)
+    assert polygamma(1, 1 + x).expand(func=True,basic=False) == -1 - x + polygamma(1, x)
+    assert polygamma(1, 2 + x).expand(func=True,basic=False) == -5 - 2*x + polygamma(1, x)
+    assert polygamma(1, 3 + x).expand(func=True,basic=False) == -12 - 3*x + polygamma(1, x)
+    assert polygamma(1, 4 + x).expand(func=True,basic=False) == -22 - 4*x + polygamma(1, x)
     # TODO please write more tests -- #653
 
 def test_loggamma():
